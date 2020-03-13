@@ -21,10 +21,10 @@ namespace DurableStartup {
 			_serviceProvider = serviceProvider;
 		}
 
-		public async void Initialize(ExtensionConfigContext context) {
+		public void Initialize(ExtensionConfigContext context) {
 			var subscriptionEnsurer = (TopicSubscriptionEnsurer)_serviceProvider.GetService(typeof(TopicSubscriptionEnsurer));
             // This ensures the Topic Subscription has been created
-			await subscriptionEnsurer.EnsureAsync();
+			subscriptionEnsurer.EnsureAsync().Wait();
 		}
 	}    
 }
